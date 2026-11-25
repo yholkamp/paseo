@@ -133,6 +133,13 @@ write them. The built-in `paseo` user has uid/gid `1000:1000`. For a different
 host uid/gid, either adjust ownership on the mounted directories or run the
 container with Docker's `--user` / Compose `user:` option.
 
+## Private Maven Registries
+
+[`docker/gar-proxy`](../docker/gar-proxy/) lets builds in the container pull
+from a private Google Artifact Registry Maven repository. The host refreshes the
+access token, so no Google credentials go into the container. Setup is in its
+README.
+
 ## Reverse Proxies
 
 When serving Paseo behind a reverse proxy, forward normal HTTP requests and

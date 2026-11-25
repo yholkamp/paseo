@@ -1,0 +1,9 @@
+[Unit]
+Description=Refresh the Artifact Registry token for gar-proxy every 20 minutes
+
+[Timer]
+OnStartupSec=10s
+OnCalendar=*:0/20
+
+[Install]
+WantedBy=timers.target

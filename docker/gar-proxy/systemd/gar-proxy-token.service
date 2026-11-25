@@ -1,0 +1,8 @@
+[Unit]
+Description=Refresh the Artifact Registry token for gar-proxy
+
+[Service]
+Type=oneshot
+EnvironmentFile=%h/.config/gar-proxy/.env
+Environment=PATH=%h/google-cloud-sdk/bin:/snap/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=%h/.config/gar-proxy/refresh-token.sh

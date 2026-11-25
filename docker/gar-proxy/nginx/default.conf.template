@@ -1,0 +1,17 @@
+server {
+    listen 8080;
+
+    location / {
+        limit_except GET { deny all; }
+
+        include /etc/nginx/gar-auth/*.conf;
+
+        proxy_pass ${GAR_UPSTREAM};
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_ssl_server_name on;
+        proxy_ssl_verify on;
+        proxy_ssl_verify_depth 3;
+        proxy_ssl_trusted_certificate /etc/ssl/certs/ca-certificates.crt;
+    }
+}

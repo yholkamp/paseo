@@ -1,0 +1,17 @@
+services:
+  gar-proxy:
+    image: nginx:1.29-alpine
+    container_name: gar-proxy
+    restart: unless-stopped
+    environment:
+      GAR_UPSTREAM: ${GAR_UPSTREAM:?set GAR_UPSTREAM in .env}
+    volumes:
+      - ./nginx:/etc/nginx/templates:ro
+      - ${GAR_AUTH_DIR:-${HOME}/.local/state/gar-proxy}:/etc/nginx/gar-auth:ro
+    networks:
+      - paseo
+
+networks:
+  paseo:
+    external: true
+    name: ${PASEO_NETWORK:?set PASEO_NETWORK in .env}
